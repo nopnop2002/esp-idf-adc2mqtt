@@ -1,0 +1,185 @@
+menu "Application configuration"
+
+	menu "WiFi Setting"
+
+		config ESP_WIFI_SSID
+			string "WiFi SSID"
+			default "myssid"
+			help
+				SSID (network name) to connect to.
+
+		config ESP_WIFI_PASSWORD
+			string "WiFi Password"
+			default "mypassword"
+			help
+				WiFi password (WPA or WPA2) to connect to.
+
+		config ESP_MAXIMUM_RETRY
+			int "Maximum retry"
+			default 5
+			help
+				Set the Maximum retry to avoid station reconnecting to the AP unlimited when the AP is really inexistent.
+
+	endmenu
+
+    menu "Broker Setting"
+
+        config MQTT_BROKER
+            string "MQTT Broker"
+            default "esp32-broker.local"
+            help
+                Host name or IP address of the broker to connect to
+
+        config MQTT_PUB_TOPIC
+            string "Publish Topic"
+            default "/topic/test"
+            help
+                Topic of publish
+
+        config BROKER_AUTHENTICATION
+            bool "Server requests for password when connecting"
+            default false
+            help
+                Server requests for password when connecting.
+
+        config AUTHENTICATION_USERNAME
+            depends on BROKER_AUTHENTICATION
+            string "Username used for connecting to the broker"
+            default "user"
+            help
+                Username used for connecting to the broker.
+
+        config AUTHENTICATION_PASSWORD
+            depends on BROKER_AUTHENTICATION
+            string "Password used for connecting to the broker"
+            default "password"
+            help
+                Username used for connecting to the broker.
+
+    endmenu
+
+	menu "ADC Setting"
+
+		config GPIO_RANGE_MIN
+			int
+			default 32 if IDF_TARGET_ESP32
+			default  1 if IDF_TARGET_ESP32S2
+			default  1 if IDF_TARGET_ESP32S3
+			default  0 if IDF_TARGET_ESP32C2
+			default  0 if IDF_TARGET_ESP32C3
+
+		config GPIO_RANGE_MAX
+			int
+			default 39 if IDF_TARGET_ESP32
+			default 10 if IDF_TARGET_ESP32S2
+			default 10 if IDF_TARGET_ESP32S3
+			default  4 if IDF_TARGET_ESP32C2
+			default  4 if IDF_TARGET_ESP32C3
+
+		config ADC1_GPIO
+			int "GPIO for ADC1"
+			range GPIO_RANGE_MIN GPIO_RANGE_MAX
+			default 32 if IDF_TARGET_ESP32
+			default  1 if IDF_TARGET_ESP32S2
+			default  1 if IDF_TARGET_ESP32S3
+			default  0 if IDF_TARGET_ESP32C2
+			default  0 if IDF_TARGET_ESP32C3
+			help
+				ADC1_CHANNEL number.
+				Some GPIOs are used for other purposes (flash connections, etc.) and cannot be used to ADC.
+				On the ESP32, 8 channels: GPIO32 - GPIO39.
+				On the ESP32-S2, 10 channels: GPIO1 - GPIO10.
+				On the ESP32-S3, 10 channels: GPIO1 - GPIO10.
+				On the ESP32-C2, 5 channels: GPIO0 - GPIO4.
+				On the ESP32-C3, 5 channels: GPIO0 - GPIO4.
+
+		config ENABLE_ADC2
+			bool "Enable ADC2"
+			default n
+			help
+				Enable Meter2.
+
+		config ADC2_GPIO
+			depends on ENABLE_ADC2
+			int "GPIO for ADC2"
+			range GPIO_RANGE_MIN GPIO_RANGE_MAX
+			default 33 if IDF_TARGET_ESP32
+			default  2 if IDF_TARGET_ESP32S2
+			default  2 if IDF_TARGET_ESP32S3
+			default  1 if IDF_TARGET_ESP32C2
+			default  1 if IDF_TARGET_ESP32C3
+			help
+				ADC1_CHANNEL number.
+				Some GPIOs are used for other purposes (flash connections, etc.) and cannot be used to ADC.
+				On the ESP32, 8 channels: GPIO32 - GPIO39.
+				On the ESP32-S2, 10 channels: GPIO1 - GPIO10.
+				On the ESP32-S3, 10 channels: GPIO1 - GPIO10.
+				On the ESP32-C2, 5 channels: GPIO0 - GPIO4.
+				On the ESP32-C3, 5 channels: GPIO0 - GPIO4.
+
+		config ENABLE_ADC3
+			bool "Enable ADC3"
+			default n
+			help
+				Enable Meter3.
+
+		config ADC3_GPIO
+			depends on ENABLE_ADC3
+			int "GPIO for ADC3"
+			range GPIO_RANGE_MIN GPIO_RANGE_MAX
+			default 34 if IDF_TARGET_ESP32
+			default  3 if IDF_TARGET_ESP32S2
+			default  3 if IDF_TARGET_ESP32S3
+			default  2 if IDF_TARGET_ESP32C2
+			default  2 if IDF_TARGET_ESP32C3
+			help
+				ADC1_CHANNEL number.
+				Some GPIOs are used for other purposes (flash connections, etc.) and cannot be used to ADC.
+				On the ESP32, 8 channels: GPIO32 - GPIO39.
+				On the ESP32-S2, 10 channels: GPIO1 - GPIO10.
+				On the ESP32-S3, 10 channels: GPIO1 - GPIO10.
+				On the ESP32-C2, 5 channels: GPIO0 - GPIO4.
+				On the ESP32-C3, 5 channels: GPIO0 - GPIO4.
+	
+		config ADC_CYCLE
+			int "ADC measurement cycle tick"
+			range 100 1000
+			default 100
+			help
+				ADC measurement cycle tick.
+				1tick is 10ms.
+
+		choice ADC_OUTPUT
+			prompt "ADC Output format"
+			default ADC_RAW
+			help
+				Select ADC Output format.
+			config ADC_RAW
+				bool "Output without converting to millivolts"
+				help
+					Output without converting to millivolts.
+			config ADC_MV
+				bool "Output with converting to millivolts"
+				help
+					Output with converting to millivolts.
+		endchoice
+
+        choice TOPIC_FORMAT
+            prompt "mqtt topic format"
+            default TOPIC_JSON
+            help
+                Select MQTT Topic format.
+            config TOPIC_JSON
+                bool "Topic is one json format"
+                help
+                    Topic is one json format.
+            config TOPIC_SEPARATE
+                bool "Topic is a separate format"
+                help
+                    Topic is a separate format.
+        endchoice
+
+	endmenu
+
+endmenu
+
