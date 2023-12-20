@@ -150,7 +150,6 @@ ESP32 GND    -----------------------------+ Rb of variable resistor   |
 # Visualize MQTT data
 
 ## Using postman application
-![postman](https://github.com/nopnop2002/esp-idf-can2mqtt/assets/6020549/e8e55a52-0f6d-43a5-94c9-2603c566785f)
 
 Postman works as a native app on all major operating systems including Linux (32-bit/64-bit), macOS, and Windows (32-bit/64-bit).   
 Postman supports MQTT visualization.   
