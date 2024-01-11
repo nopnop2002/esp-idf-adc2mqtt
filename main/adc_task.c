@@ -53,12 +53,21 @@ adc_channel_t gpio2adc(int gpio) {
 	if (gpio == 9) return ADC1_GPIO9_CHANNEL;
 	if (gpio == 10) return ADC1_GPIO10_CHANNEL;
 
-#else
+#elif CONFIG_IDF_TARGET_ESP32C2 || CONFIG_IDF_TARGET_ESP32C3
 	if (gpio == 0) return ADC1_GPIO0_CHANNEL;
 	if (gpio == 1) return ADC1_GPIO1_CHANNEL;
 	if (gpio == 2) return ADC1_GPIO2_CHANNEL;
 	if (gpio == 3) return ADC1_GPIO3_CHANNEL;
 	if (gpio == 4) return ADC1_GPIO4_CHANNEL;
+
+#elif CONFIG_IDF_TARGET_ESP32C6
+	if (gpio == 0) return ADC1_GPIO0_CHANNEL;
+	if (gpio == 1) return ADC1_GPIO1_CHANNEL;
+	if (gpio == 2) return ADC1_GPIO2_CHANNEL;
+	if (gpio == 3) return ADC1_GPIO3_CHANNEL;
+	if (gpio == 4) return ADC1_GPIO4_CHANNEL;
+	if (gpio == 5) return ADC1_GPIO5_CHANNEL;
+	if (gpio == 6) return ADC1_GPIO6_CHANNEL;
 
 #endif
 	return -1;
