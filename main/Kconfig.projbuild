@@ -1,5 +1,23 @@
 menu "Application configuration"
 
+	config GPIO_RANGE_MIN
+		int
+		default 32 if IDF_TARGET_ESP32
+		default  1 if IDF_TARGET_ESP32S2
+		default  1 if IDF_TARGET_ESP32S3
+		default  0 if IDF_TARGET_ESP32C2
+		default  0 if IDF_TARGET_ESP32C3
+		default  0 if IDF_TARGET_ESP32C6
+
+	config GPIO_RANGE_MAX
+		int
+		default 39 if IDF_TARGET_ESP32
+		default 10 if IDF_TARGET_ESP32S2
+		default 10 if IDF_TARGET_ESP32S3
+		default  4 if IDF_TARGET_ESP32C2
+		default  4 if IDF_TARGET_ESP32C3
+		default  6 if IDF_TARGET_ESP32C6
+
 	menu "WiFi Setting"
 
 		config ESP_WIFI_SSID
@@ -59,22 +77,6 @@ menu "Application configuration"
 	endmenu
 
 	menu "ADC Setting"
-
-		config GPIO_RANGE_MIN
-			int
-			default 32 if IDF_TARGET_ESP32
-			default  1 if IDF_TARGET_ESP32S2 || IDF_TARGET_ESP32S3
-			default  0 if IDF_TARGET_ESP32C2
-			default  0 if IDF_TARGET_ESP32C3
-			default  0 if IDF_TARGET_ESP32C6
-
-		config GPIO_RANGE_MAX
-			int
-			default 39 if IDF_TARGET_ESP32
-			default 10 if IDF_TARGET_ESP32S2 || IDF_TARGET_ESP32S3
-			default  4 if IDF_TARGET_ESP32C2
-			default  4 if IDF_TARGET_ESP32C3
-			default  6 if IDF_TARGET_ESP32C6
 
 		config ADC1_GPIO
 			int "GPIO for ADC1"
