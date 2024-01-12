@@ -22,11 +22,6 @@ idf.py menuconfig
 idf.py flash monitor
 ```
 
-__Note for ESP-IDF V5.0__   
-ESP-IDF V5.0 ADC driver has a bug and does not define GPIO lookup macros like ADC1_GPIO32_CHANNEL.   
-Therefore, when using ESP-IDF V5.0, it is necessary to include the legacy driver.   
-This bug has been resolved in ESP-IDF V5.1.   
-
 __Note for ESP32S2__   
 __Only ESP32S2__ has ADC resolution of 13 bits.   
 
