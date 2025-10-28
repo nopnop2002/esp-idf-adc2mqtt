@@ -71,7 +71,7 @@ Analog input gpio for ESP32S2 is GPIO01 ~ GPIO10. 13Bits width.
 Analog input gpio for ESP32S3 is GPIO01 ~ GPIO10. 12Bits width.   
 Analog input gpio for ESP32C2 is GPIO00 ~ GPIO04. 12Bits width.   
 Analog input gpio for ESP32C3 is GPIO00 ~ GPIO04. 12Bits width.   
-Analog input gpio for ESP32C3 is GPIO00 ~ GPIO06. 12Bits width.   
+Analog input gpio for ESP32C6 is GPIO00 ~ GPIO06. 12Bits width.   
 
 You can select raw data or millivolt-converted data as the ADC conversion value.   
 ![config-adc-3](https://github.com/nopnop2002/esp-idf-adc2mqtt/assets/6020549/59dbd445-920c-46e6-aaab-7960935596c6)
