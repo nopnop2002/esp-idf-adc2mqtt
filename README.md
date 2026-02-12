@@ -8,7 +8,7 @@ You can use these to convert analog values to digital values.
 The analog values change dynamically and are suitable for this demonstration.   
 This project uses ADC conversion values, but it can also be applied to analog sensors such as thermometers and hygrometers.   
 
-# Software requiment
+# Software requirements
 ESP-IDF V5.x.   
 ESP-IDF V5.0 is required when using ESP32-C2.   
 ESP-IDF V5.1 is required when using ESP32-C6.   
